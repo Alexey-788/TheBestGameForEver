@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Camera2D
+
+var positions = []
+var target
+var parametr1 = 5
+var parametr2 = 10
+var speed = 300
+
+func on_target_moved():
+	pass
+
+func _physics_process(delta):
+	var pos_min_distance = positions[0]
+	var min_distance = target.position.distance_to(positions[0])
+	for _i in positions:
+		var current_distance = target.position.distance_to(_i)
+		if current_distance < min_distance:
+			min_distance = current_distance
+			pos_min_distance = _i
+	
+	var distance_x = target.position.x - pos_min_distance.x
+	var shift_x = log(abs(distance_x/parametr1)+1)*parametr2
+	if distance_x < 0:
+		shift_x = -shift_x
+		
+	var distance_y = target.position.y - pos_min_distance.y
+	var shift_y = log(abs(distance_y/parametr1)+1)*parametr2
+	if distance_y < 0:
+		shift_y = -shift_y
+		
+	position = position.move_toward(pos_min_distance + Vector2(shift_x, shift_y), speed * delta)
+"
+
+[node name="Camera" type="Camera2D"]
+current = true
+script = SubResource( 1 )

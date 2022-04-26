@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu Select.wav-09fe3e699e8639cc05c059773d07150d.sample"
+
+[deps]
+
+source_file="res://spizdel/Music and Sounds/Menu Select.wav"
+dest_files=[ "res://.import/Menu Select.wav-09fe3e699e8639cc05c059773d07150d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
