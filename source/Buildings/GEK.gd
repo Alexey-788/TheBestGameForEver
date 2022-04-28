@@ -1,11 +1,17 @@
 extends StaticBody2D
 
-var health = 100
+onready var health_line = $HealthLine
+
+var MAX_HEALTH = 100
+var start_health_line_with = 16
+var health = MAX_HEALTH
 var speed = .3
 
-func _physics_process(delta):
-	
-	pass
+func get_damage(value):
+	health -= value
+	health_line.mesh.size.x = float(health)/MAX_HEALTH * start_health_line_with
+	if health <= 0:
+		destroy()
 
-func _ready():
-	pass
+func destroy():
+	queue_free()

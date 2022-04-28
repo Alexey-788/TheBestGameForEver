@@ -17,9 +17,11 @@ func init(params):
 	if params.has("damage"): damage = params["damage"]
 	
 	life_timer.start(life_time)
+	
+	direction *= speed_mult * base_speed
 
 func _physics_process(delta):
-	move_and_slide(direction*base_speed*speed_mult)
+	direction = move_and_slide(direction)
 	look_at(position+direction)
 	var colliders = get_slide_count()
 	if colliders:
@@ -41,7 +43,3 @@ func _on_LifeTimer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if died:
 		queue_free()
-
-
-func _on_Fireball_input_event(viewport, event, shape_idx):
-	print("ffff")

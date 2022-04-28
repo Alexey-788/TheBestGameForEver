@@ -30,3 +30,5 @@ autostart = true
 modulate = Color( 0.890196, 0.231373, 0.231373, 1 )
 position = Vector2( 0, -25 )
 mesh = SubResource( 3 )
+
+[connection signal="timeout" from="StepTimeOuter" to="." method="_on_StepTimeOuter_timeout"]
