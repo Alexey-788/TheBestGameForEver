@@ -61,6 +61,7 @@ attack={
 3d_physics/layer_1="31"
 2d_physics/layer_2="Enemу"
 3d_physics/layer_2="32"
+2d_physics/layer_3="Build"
 3d_physics/layer_3="33"
 
 [physics]

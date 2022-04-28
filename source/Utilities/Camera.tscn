@@ -21,17 +21,20 @@ func _physics_process(delta):
 			min_distance = current_distance
 			pos_min_distance = _i
 	
-	var distance_x = target.position.x - pos_min_distance.x
-	var shift_x = log(abs(distance_x/parametr1)+1)*parametr2
-	if distance_x < 0:
-		shift_x = -shift_x
-		
-	var distance_y = target.position.y - pos_min_distance.y
-	var shift_y = log(abs(distance_y/parametr1)+1)*parametr2
-	if distance_y < 0:
-		shift_y = -shift_y
-		
-	position = position.move_toward(pos_min_distance + Vector2(shift_x, shift_y), speed * delta)
+	if min_distance < 100:
+		var distance_x = target.position.x - pos_min_distance.x
+		var shift_x = log(abs(distance_x/parametr1)+1)*parametr2
+		if distance_x < 0:
+			shift_x = -shift_x
+			
+		var distance_y = target.position.y - pos_min_distance.y
+		var shift_y = log(abs(distance_y/parametr1)+1)*parametr2
+		if distance_y < 0:
+			shift_y = -shift_y
+			
+		position = position.move_toward(pos_min_distance + Vector2(shift_x, shift_y), speed * delta)
+	else:
+		position = position.move_toward(target.position, speed*delta)
 "
 
 [node name="Camera" type="Camera2D"]
