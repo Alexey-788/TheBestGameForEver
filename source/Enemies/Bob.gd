@@ -12,7 +12,7 @@ var speed = 30
 var damage = 10
 var can_shoot = true
 
-var sleep_time = 1.2
+var sleep_time = .5
 var go_time = 1
 
 var buildings = []
@@ -32,9 +32,9 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if get_slide_count() >= 1:
+	if get_slide_count() > 0:
 		var build = get_slide_collision(0).collider
-		if can_shoot and build.get_collision_layer_bit(2):
+		if can_shoot and build and build.get_collision_layer_bit(2):
 			build.get_damage(damage)
 			can_shoot = false
 	if state == State.GOING:
@@ -53,15 +53,14 @@ func _on_StepTimeOuter_timeout():
 		can_shoot = true
 		step_time_outer.start(go_time)
 		state = State.GOING
-		for i in range(0, buildings.size()):
-	
-			if !weakref(buildings[i]).get_ref():
-				buildings.remove(i)
 		if !buildings.empty():
-			var min_dist_build = buildings[0]
-			var min_dist = position.distance_to(buildings[0].position)
+			var min_dist_build = null
+			var min_dist = null
 			for build in buildings:
 				var distance = position.distance_to(build.position)
+				if min_dist == null:
+					min_dist = distance
+					min_dist_build = build
 				if distance < min_dist:
 					min_dist = distance
 					min_dist_build = build

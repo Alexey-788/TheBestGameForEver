@@ -15,3 +15,10 @@ func get_damage(value):
 
 func destroy():
 	queue_free()
+
+
+var was_popupich = false
+func _on_GEK_mouse_entered():
+	if !was_popupich:
+		$WindowDialog.popup_centered_clamped(Vector2(100, 100))
+		was_popupich = true
