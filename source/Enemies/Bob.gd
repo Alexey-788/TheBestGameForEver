@@ -24,6 +24,10 @@ enum State {
 
 var state = State.GOING
 
+func askForTowers():
+	emit_signal("askTower")
+	
+
 func get_damage(var value):
 	health -= value
 	healt_line.mesh.size.x = float(health)/MAX_HEALTH * start_health_line_with
@@ -57,6 +61,7 @@ func _on_StepTimeOuter_timeout():
 			var min_dist_build = null
 			var min_dist = null
 			for build in buildings:
+				if !build.is_alive: continue
 				var distance = position.distance_to(build.position)
 				if min_dist == null:
 					min_dist = distance
@@ -64,6 +69,7 @@ func _on_StepTimeOuter_timeout():
 				if distance < min_dist:
 					min_dist = distance
 					min_dist_build = build
-			var direction = position.direction_to(min_dist_build.position)
-			var shifted_directoin = (direction + Vector2(rand_range(-.5, .5), rand_range(-.5, .5))).normalized()
-			velocity = shifted_directoin
+			if min_dist_build != null:
+				var direction = position.direction_to(min_dist_build.position)
+				var shifted_directoin = (direction + Vector2(rand_range(-.5, .5), rand_range(-.5, .5))).normalized()
+				velocity = shifted_directoin
