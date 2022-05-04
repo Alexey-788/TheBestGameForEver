@@ -107,15 +107,27 @@ position = Vector2( 280, 40 )
 [node name="Position3" type="Position2D" parent="CameraPositions"]
 position = Vector2( 152, 168 )
 
+[node name="Mobs" type="Node" parent="."]
+
+[node name="Bob" parent="Mobs" instance=ExtResource( 7 )]
+position = Vector2( -144, -80 )
+
+[node name="Bob2" parent="Mobs" instance=ExtResource( 7 )]
+position = Vector2( 248, 264 )
+
+[node name="Bob3" parent="Mobs" instance=ExtResource( 7 )]
+position = Vector2( 344, -48 )
+
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Tower" parent="Buildings" instance=ExtResource( 9 )]
-position = Vector2( -8, 8 )
+position = Vector2( -7, 9 )
 
 [node name="GEK" parent="Buildings" instance=ExtResource( 8 )]
 position = Vector2( 144, 56 )
 
-[node name="Mobs" type="Node" parent="."]
+[node name="Tower2" parent="Buildings" instance=ExtResource( 9 )]
+position = Vector2( 152, 168 )
 
-[node name="Bob" parent="Mobs" instance=ExtResource( 7 )]
-position = Vector2( -176, 72 )
+[node name="Tower3" parent="Buildings" instance=ExtResource( 9 )]
+position = Vector2( 280, 40 )

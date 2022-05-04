@@ -9,6 +9,7 @@ extents = Vector2( 16, 16 )
 size = Vector2( 32, 32 )
 
 [sub_resource type="QuadMesh" id=3]
+resource_local_to_scene = true
 size = Vector2( 16, 1 )
 
 [node name="GEK" type="StaticBody2D" groups=["build"]]
