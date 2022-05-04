@@ -3,8 +3,6 @@ extends StaticBody2D
 onready var health_line = $HealthLine
 onready var collision = $Collision
 
-signal destroy
-
 var MAX_HEALTH = 100
 var start_health_line_with = 16
 var health = MAX_HEALTH
