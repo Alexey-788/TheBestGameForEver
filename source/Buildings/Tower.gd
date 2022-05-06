@@ -5,6 +5,7 @@ var Fireball = preload("res://Weapons/Fireball.tscn")
 onready var health_line = $HealthLine
 onready var collision = $Collision
 onready var time_outer = $TimeOuter
+onready var animation_player = $AnimationPlayer
 
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
@@ -13,20 +14,17 @@ var is_alive = true
 var ready_for_fire = true
 var bullet_speed = 10
 
-var damage_mutex = Mutex.new()
-
 func get_damage(value):
-	damage_mutex.lock()
 	health_line.mesh.size.x = float(health)/MAX_HEALTH * start_health_line_with
 	health -= value
 	if health <= 0:
 		destroy()
-	damage_mutex.unlock()
 		
 func destroy():
 	health_line.mesh.size.x = 0
 	is_alive = false
 	collision.disabled = true
+	animation_player.play("Destroy")
 
 var entered_mobs = []
 
@@ -41,7 +39,6 @@ func fire():
 			"speed_mult": bullet_speed,
 			"direction": shoot_vector
 		})
-		entered_mobs[0].get_damage(7)
 		ready_for_fire = false
 		time_outer.start(2)
 

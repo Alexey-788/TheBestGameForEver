@@ -160,7 +160,7 @@ z_index = 1
 position = Vector2( -184, -80 )
 
 [node name="Bob2" parent="Mobs" instance=ExtResource( 7 )]
-position = Vector2( 464, 16 )
+position = Vector2( 392, 128 )
 
 [node name="Bob3" parent="Mobs" instance=ExtResource( 7 )]
 position = Vector2( 128, 344 )
