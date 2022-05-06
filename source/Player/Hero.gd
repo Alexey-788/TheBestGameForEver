@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal moved
 
-onready var Fireball = preload("res://Weapons/Fireball.tscn")
+var Fireball = preload("res://Weapons/Fireball.tscn")
 
 onready var shoot_time_outer = $ShootTimeOuter
 
@@ -26,6 +26,7 @@ func _physics_process(delta):
 			var shoot_vector = position.direction_to(get_global_mouse_position()).normalized()
 			var fireball = Fireball.instance()
 			fireball.set_collision_mask_bit(1, true)
+			fireball.set_collision_mask_bit(2, true)
 			fireball.position = position
 			get_parent().add_child(fireball)
 			fireball.init({

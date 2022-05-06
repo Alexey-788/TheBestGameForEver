@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+var Fireball = preload("res://Weapons/Fireball.tscn")
+
 onready var health_line = $HealthLine
 onready var collision = $Collision
 onready var time_outer = $TimeOuter
@@ -9,6 +11,7 @@ var health = MAX_HEALTH
 var start_health_line_with = 16
 var is_alive = true
 var ready_for_fire = true
+var bullet_speed = 10
 
 var damage_mutex = Mutex.new()
 
@@ -29,6 +32,15 @@ var entered_mobs = []
 
 func fire():
 	if ready_for_fire and !entered_mobs.empty() and is_alive:
+		var shoot_vector = position.direction_to(entered_mobs[0].position)
+		var fireball = Fireball.instance()
+		fireball.set_collision_mask_bit(1, true)
+		fireball.position = position
+		get_parent().add_child(fireball)
+		fireball.init({
+			"speed_mult": bullet_speed,
+			"direction": shoot_vector
+		})
 		entered_mobs[0].get_damage(7)
 		ready_for_fire = false
 		time_outer.start(2)
