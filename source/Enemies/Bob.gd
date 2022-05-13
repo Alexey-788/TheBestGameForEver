@@ -44,10 +44,10 @@ func _physics_process(delta):
 	if state == State.GOING:
 		velocity = move_and_slide(velocity*speed)/speed
 	if health <= 0:
-		destroy()
+		healt_line.visible = false
+		speed = 1
+		$AnimationPlayer.play("Death")
 
-func destroy():
-	queue_free()
 
 func _on_StepTimeOuter_timeout():
 	if state == State.GOING:
